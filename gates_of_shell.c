@@ -12,7 +12,8 @@
 
 int main(int argc __attribute__((__unused__)), char **argv, char **envp)
 {
-	char **args;
+	char **args, /***env = copy_env(envp)*/;
+	char *path;
 
 	for (;;)
 	{
@@ -24,8 +25,9 @@ int main(int argc __attribute__((__unused__)), char **argv, char **envp)
 			continue;
 		}
 
-		interpreter(args, envp);
+		/*path = interpreter(args, envp);*/
+		/*execute(path, &args[1], env);*/
 		free_all(args);
 	}
-	return (SUCCESS);
+	return (EXIT_SUCCESS);
 }
