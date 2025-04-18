@@ -47,6 +47,7 @@ char *get_line(void)
 char **check_validity(char *line)
 {
 	char **args;
+	int i = 0;
 
 	if (line == NULL)
 		return (NULL);
@@ -72,20 +73,22 @@ char **check_validity(char *line)
 
 char **tokenize_line(char *line)
 {
-	char **args = malloc(sizeof(char *) * (arg_count(line) + 1));
+	char **args = malloc(sizeof(char *) * (args_count(line) + 1));
 	int i = 0, j;
 	int word = 0;
 
 	if (args == NULL)
 		return (NULL);
 
+	printf("Hola\n");
+
 	while (line[i] != '\0')
 	{
-		if (line[i] == ' ' || line[i] == '\t')
-		{
+		while (line[i] == ' ' || line[i] == '\t')
 			i++;
-			continue;
-		}
+
+		if (line[i] == '\0')
+			break;
 
 		args[word] = malloc(sizeof(char) * (_wlen(&line[i]) + 1));
 		if (args[word] == NULL)
@@ -104,7 +107,6 @@ char **tokenize_line(char *line)
 		args[word][j] = '\0';
 		word++;
 	}
-
 	args[word] = NULL;
 
 	return (args);
