@@ -10,7 +10,7 @@ char *get_line(void)
 {
 	char *line = NULL;
 	size_t len = 0;
-	ssize_t nread;
+	ssize_t nread = 0;
 	int interactive = isatty(STDIN_FILENO);
 
 	if (interactive)
@@ -21,7 +21,7 @@ char *get_line(void)
 
 	nread = getline(&line, &len, stdin);
 
-	if ((strcmp(line, "exit\n") == 0) || nread == -1)
+	if (nread == -1 || (strcmp(line, "exit\n") == 0))
 	{
 		if (interactive)
 		{
@@ -61,7 +61,7 @@ char **check_validity(char *line)
 		return (NULL);
 	}
 
-	tokenize_line(line);
+	args = tokenize_line(line);
 
 	if (args == NULL)
 		return (NULL);
@@ -79,8 +79,6 @@ char **tokenize_line(char *line)
 
 	if (args == NULL)
 		return (NULL);
-
-	printf("Hola\n");
 
 	while (line[i] != '\0')
 	{

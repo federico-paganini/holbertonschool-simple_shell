@@ -29,17 +29,6 @@ int _wlen(char *line)
 	return (i);
 }
 
-void print_args(char **args)
-{
-	int i = 0;
-
-	while (args[i] != NULL)
-	{
-		printf("%s\n", args[i]);
-		i++;
-	}
-}
-
 void free_all(char **args)
 {
 	int i = 0;

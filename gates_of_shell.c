@@ -12,8 +12,7 @@
 
 int main(int argc __attribute__((__unused__)), char **argv __attribute__((__unused__)), char **envp)
 {
-	char **args /***env = copy_env(envp)*/;
-	char *path;
+	char **args;
 
 	for (;;)
 	{
@@ -21,12 +20,10 @@ int main(int argc __attribute__((__unused__)), char **argv __attribute__((__unus
 
 		if (args == NULL)
 		{
-			free_all(args);
 			continue;
 		}
 
-		/*path = interpreter(args, envp);*/
-		/*execute(path, &args[1], env);*/
+		free_all(args);
 	}
 	return (EXIT_SUCCESS);
 }

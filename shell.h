@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 
 /*Function prototypes used across the shell proyect*/
 char *get_line(void);
