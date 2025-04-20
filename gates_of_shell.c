@@ -19,11 +19,7 @@ int main(int argc __attribute__((__unused__)),
 
 	for (;;)
 	{
-		args = get_args(get_line());
-
-		if(args == NULL)
-			continue;
-
+		args = get_args(get_line(env));
 		path = interpreter(args, env);
 
 		if (path == NULL)
@@ -32,12 +28,12 @@ int main(int argc __attribute__((__unused__)),
 			continue;
 		}
 
-		printf("Path: %s\n", path);
+		execute(path, args, env);
 		
 		free_vector(args);
-		free_vector(env);
 		free(path);
 	}
+	free_vector(env);
 
 	return (EXIT_SUCCESS);
 }
