@@ -11,7 +11,7 @@
  */
 
 int main(int argc __attribute__((__unused__)),
-		char **argv __attribute__((__unused__)), char **envp)
+		char **argv, char **envp)
 {
 	char **args; 
 	char **env = copy_envp(envp);
@@ -20,7 +20,7 @@ int main(int argc __attribute__((__unused__)),
 	for (;;)
 	{
 		args = get_args(get_line(env));
-		path = interpreter(args, env);
+		path = interpreter(argv, args, env);
 
 		if (path == NULL)
 		{
@@ -29,7 +29,7 @@ int main(int argc __attribute__((__unused__)),
 		}
 
 		execute(path, args, env);
-		
+
 		free_vector(args);
 		free(path);
 	}

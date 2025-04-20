@@ -1,12 +1,15 @@
 #include "shell.h"
 
-char *interpreter(char **args, char **env)
+char *interpreter(char **argv, char **args, char **env)
 {
 	char *cmd;
 	char *path;
 
 	if (args == NULL || args[0] == NULL)
 		return (NULL);
+
+	/*if (handle_builtin(args))
+		return (NULL);*/
 
 	cmd = args[0];
 	if (cmd[0] == '/' || (cmd[0] == '.' && cmd[1] == '/'))
@@ -17,14 +20,14 @@ char *interpreter(char **args, char **env)
 		}
 		else
 		{
-			perror(cmd);
+			fprintf(stderr, "%s: 1: %s: not found\n", argv[0], cmd);
 			return (NULL);
 		}
 	}
 	path = find_path(cmd, env);
 	if (path == NULL)
 	{
-		fprintf(stderr, "%s: command not found\n", args[0]);
+		fprintf(stderr, "%s: 1: %s: command not found\n", argv[0], cmd);
 		return (NULL);
 	}
 
