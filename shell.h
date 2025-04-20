@@ -8,9 +8,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 /*Function prototypes used to process the args*/
-char *get_line(void);
+char *get_line(char **);
 char **get_args(char *);
 char **tokenize_line(char *);
 
@@ -18,6 +20,9 @@ char **tokenize_line(char *);
 char *interpreter(char **, char **);
 char **tokenize_path(char *);
 char *find_path(char *, char **);
+
+/*Execute function*/
+void execute(char *, char **, char **);
 
 /*General utilities prototypes functions*/
 int args_count(char *);
