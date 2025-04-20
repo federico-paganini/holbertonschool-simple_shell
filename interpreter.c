@@ -16,7 +16,7 @@ char *interpreter(char **argv, char **args)
 	{
 		if (access(cmd, X_OK) == 0)
 		{
-			return (cmd);
+			return (strdup(cmd));
 		}
 		else
 		{
