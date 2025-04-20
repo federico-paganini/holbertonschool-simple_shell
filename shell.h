@@ -9,15 +9,21 @@
 #include <string.h>
 #include <sys/stat.h>
 
-/*Function prototypes used across the shell proyect*/
+/*Function prototypes used to process the args*/
 char *get_line(void);
-char **check_validity(char *);
+char **get_args(char *);
 char **tokenize_line(char *);
+
+/*Function prototypes used to process the execution path*/
+char *interpreter(char **, char **);
+char **tokenize_path(char *);
+char *find_path(char *, char **);
 
 /*General utilities prototypes functions*/
 int args_count(char *);
 int _wlen(char *);
-void print_args(char **);
-void free_all(char **);
+void free_vector(char**);
+char **copy_envp(char **);
 
 #endif
+
