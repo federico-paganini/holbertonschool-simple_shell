@@ -14,20 +14,14 @@ char *get_line(void)
 	int interactive = isatty(STDIN_FILENO);
 
 	if (interactive)
-	{
 		write(1, "#cisfun$ ", 9);
-		fflush(stdout);
-	}
 
 	nread = getline(&line, &len, stdin);
 
-	if (nread == -1 || (strcmp(line, "exit\n") == 0))
+	if (nread == -1)
 	{
 		if (interactive)
-		{
 			write(1, "logout\n", 7);
-			fflush(stdout);
-		}
 		free(line);
 		exit(EXIT_SUCCESS);
 	}
@@ -35,16 +29,10 @@ char *get_line(void)
 	if (nread > 0 && line[nread - 1] == '\n')
 		line[nread - 1] = '\0';
 
-	if (*line == '\0')
-	{
-		free(line);
-		return (NULL);
-	}
-
 	return (line);
 }
 
-char **check_validity(char *line)
+char **get_args(char *line)
 {
 	char **args;
 	int i = 0;
@@ -52,7 +40,7 @@ char **check_validity(char *line)
 	if (line == NULL)
 		return (NULL);
 
-	while (line[i] != '\0' && line[i] == ' ' || line[i] == '\t')
+	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 
 	if (line[i] == '\0')
@@ -61,13 +49,12 @@ char **check_validity(char *line)
 		return (NULL);
 	}
 
-	args = tokenize_line(line);
+	args = tokenize_line(&line[i]);
 
 	if (args == NULL)
 		return (NULL);
 
 	free(line);
-
 	return (args);
 }
 
@@ -91,19 +78,15 @@ char **tokenize_line(char *line)
 		args[word] = malloc(sizeof(char) * (_wlen(&line[i]) + 1));
 		if (args[word] == NULL)
 		{
-			for (i = 0; i < word; i++)
-				free(args[i]);
-			free(args);
+			free_vector(args);
 			return (NULL);
 		}
 
 		j = 0;
-
 		while (line[i] != ' ' && line[i] != '\t' && line[i] != '\0')
 			args[word][j++] = line[i++];
 
-		args[word][j] = '\0';
-		word++;
+		args[word++][j] = '\0';
 	}
 	args[word] = NULL;
 
