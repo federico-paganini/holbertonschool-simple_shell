@@ -1,6 +1,6 @@
 #include "shell.h"
 
-char *interpreter(char **argv, char **args, char **env)
+char *interpreter(char **argv, char **args)
 {
 	char *cmd;
 	char *path;
@@ -24,7 +24,7 @@ char *interpreter(char **argv, char **args, char **env)
 			return (NULL);
 		}
 	}
-	path = find_path(cmd, env);
+	path = find_path(cmd);
 	if (path == NULL)
 	{
 		fprintf(stderr, "%s: 1: %s: command not found\n", argv[0], cmd);
@@ -34,7 +34,7 @@ char *interpreter(char **argv, char **args, char **env)
 	return (path);
 }
 
-char *find_path(char *cmd, char **env)
+char *find_path(char *cmd)
 {
 	char *path = getenv("PATH");
 	char **paths = tokenize_path(path);

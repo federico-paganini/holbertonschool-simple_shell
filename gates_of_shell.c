@@ -20,7 +20,7 @@ int main(int argc __attribute__((__unused__)),
 	for (;;)
 	{
 		args = get_args(get_line(env));
-		path = interpreter(argv, args, env);
+		path = interpreter(argv, args);
 
 		if (path == NULL)
 		{

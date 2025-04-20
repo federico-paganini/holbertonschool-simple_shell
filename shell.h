@@ -17,9 +17,9 @@ char **get_args(char *);
 char **tokenize_line(char *);
 
 /*Function prototypes used to process the execution path*/
-char *interpreter(char **, char **, char **);
+char *interpreter(char **, char **);
 char **tokenize_path(char *);
-char *find_path(char *, char **);
+char *find_path(char *);
 
 /*Execute function*/
 void execute(char *, char **, char **);
