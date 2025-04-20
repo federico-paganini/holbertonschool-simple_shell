@@ -29,7 +29,7 @@ int _wlen(char *line)
 	return (i);
 }
 
-void free_all(char **args)
+void free_vector(char **args)
 {
 	int i = 0;
 
