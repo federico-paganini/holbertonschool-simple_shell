@@ -6,7 +6,7 @@
  * return: A pointer to the memory adress of the line.
  */
 
-char *get_line(void)
+char *get_line(char **env)
 {
 	char *line = NULL;
 	size_t len = 0;
@@ -21,8 +21,9 @@ char *get_line(void)
 	if (nread == -1)
 	{
 		if (interactive)
-			write(1, "logout\n", 7);
+			write(1, "\nlogout\n", 8);
 		free(line);
+		free_vector(env);
 		exit(EXIT_SUCCESS);
 	}
 
