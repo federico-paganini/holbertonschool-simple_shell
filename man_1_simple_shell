@@ -1,0 +1,78 @@
+.\" cisfun  manual page
+.TH "SHELL" 1 "April 21, 2025" "0.1" "Simple Shell"
+.SH NAME
+cisfun \- a simple shell that executes your commands
+.SH SYNOPSIS
+.B cisfun
+.SH DESCRIPTION
+Welcome to **cisfun** - a lightweight shell created with simplicity. This shell is designed to offer a direct, no-nonsense experience when executing your commands. Here is what it does:
+
+.IP 
+
+\[bu]
+**Prompt & Read:** It greets you with the prompt `#cisfun$ ` (when running interactively) and waits for your input.
+.IP 
+
+\[bu]
+**Tokenize:** It breaks your input into manageable pieces (commands and arguments) so that every part is well understood.
+.IP 
+
+\[bu]
+**Interpret & Locate:** The shell figures out whether you're providing an exact path or if it should locate the command in your systems PATH. It looks for the command in each directory until it finds the one you meant.
+.IP 
+
+\[bu]
+**Execute:** By forking a child process, it runs your command using `execve` and then waits for it to finish.
+.IP 
+
+\[bu]
+**Environment Safety:** The shell takes a snapshot of the current environment using a copy function so that all modifications are kept safe and local.
+
+Every step is managed by simple functions that work together to create a smooth experience.
+.SH FUNCTIONS
+The project is divided into several well-defined functions:
+.TP
+.B copy_envp
+Creates a duplicate of your environment variables, ensuring that changes during the shell's lifetime are isolated.
+.TP
+.B get_line
+Handles your input with . If it detects you're in a terminal, it shows the prompt `#cisfun$ ` before reading your command.
+.TP
+.B get_args and tokenize_line
+They split your command into individual words, taking out any unnecessary leading spaces to keep the process tidy.
+.TP
+.B interpreter, find_path, and tokenize_path
+These functions work by checking if your command is a directly executable file or finding it within your PATH, and they deliver the correct, full path when needed.
+.TP
+.B execute
+This function gives life to your command by creating a child process with fork(2) and running the command using execve(2), then it waits until the process is done.
+.TP
+.B args_count, _wlen, and free_vector
+These functions count words, measure each token's length, and free up memory to keep the system clean.
+.SH USAGE
+Compile the shell using the following command:
+.IP ""
+gcc -Wall -Werror -Wextra -pedantic *.c -o cisfun
+.IP ""
+Then, simply start your shell by running:
+.IP ""
+./cisfun
+.PP
+Once running, you'll be greeted by our prompt:
+.IP ""
+#cisfun$
+.PP
+Type any command, use it as you desire, and when you're ready to exit, press Ctrl+D to close the session.
+.SH FILES
+The project consists of the following files:
+.IP "shell.h"
+Contains declarations and includes needed across the project.
+.IP "main.c"
+The central file that starts the shell and manages it's overall behavior.
+.IP "copy_envp.c, execute.c, get_line.c, get_args.c, tokenize_line.c, interpreter.c, find_path.c, tokenize_path.c, args_count.c, _wlen.c, free_vector.c"
+These files each handle a piece of functionality, from reading input to ensuring no memory leaks occur.
+.SH BUGS & ENHANCEMENTS
+cisfun is simple and straightforward, but if you run into issues please share them with the maintainers. Feedback helps in making the shell even better.
+.SH AUTHOR
+Bruno Barrera, along with Federico Paganini were in charge of making this project.
+
