@@ -8,12 +8,15 @@
  *
  * Return: Dynamically allocated string containing the exec path or NULL
  */
-char *interpreter(char **argv, char **args)
+char *interpreter(char **argv, char **args, char **env)
 {
 	char *cmd;
 	char *path;
 
 	if (args[0] == NULL)
+		return (NULL);
+
+	if(builtin_handler(argv, args, env))
 		return (NULL);
 
 	cmd = args[0];
