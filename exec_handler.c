@@ -30,4 +30,7 @@ void execute(char *cmd, char **args, char **env)
 	{
 		perror("fork");
 	}
+
+	free_vector(args);
+	free(cmd);
 }

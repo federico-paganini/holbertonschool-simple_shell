@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * args_count - counts number of words in a line
- * @line: input string to analyse
- * Return: number of arguments in the string
+ * args_count - Counts number of words in a line.
+ * @line: Input string to analyze.
+ * Return: Number of arguments in the string.
  */
 int args_count(char *line)
 {
@@ -26,9 +26,9 @@ int args_count(char *line)
 }
 
 /**
- * _wlen - computes length of a word in a string
- * @line: input string containing words separated by spaces or tabs
- * Return: length of the first word in the string
+ * _wlen - Computes length of a word in a string.
+ * @line: Input string containing words separated by spaces or tabs.
+ * Return: Length of the first word in the string.
  */
 int _wlen(char *line)
 {
@@ -40,9 +40,9 @@ int _wlen(char *line)
 }
 
 /**
- * free_vector - frees a dynamically allocated array of strings
- * @args: array to free
- * Return: void (frees memory to prevent leaks)
+ * free_vector - Frees a dynamically allocated array of strings.
+ * @args: Array to free
+ * Return: Void (frees memory to prevent leaks).
  */
 void free_vector(char **args)
 {
@@ -54,4 +54,39 @@ void free_vector(char **args)
 		i++;
 	}
 	free(args);
+}
+
+/**
+ * copy_envp - Creates copy of the envp variable array.
+ * @env: Array of environment variables to copy.
+ * Return: Dynamically allocated array containing a copy of envp variables.
+ */
+char **copy_envp(char **env)
+{
+	int i, count = 0;
+	char **new_env;
+
+	while (env[count] != NULL)
+		count++;
+
+	new_env = malloc((count + 1) * sizeof(char *));
+	if (new_env == NULL)
+	{
+		perror("malloc");
+		exit(EXIT_FAILURE);
+	}
+
+	for (i = 0; i < count; i++)
+	{
+		new_env[i] = strdup(env[i]);
+		if (new_env[i] == NULL)
+		{
+			perror("strdup");
+			free_vector(new_env);
+			exit(EXIT_FAILURE);
+		}
+	}
+	new_env[count] = NULL;
+
+	return (new_env);
 }
