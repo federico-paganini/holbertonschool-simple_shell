@@ -1,19 +1,19 @@
 #include "shell.h"
 
 /**
- * interpreter - identifies correct executable path for a command
+ * interpreter - Identifies correct executable path for a command.
  *
- * @argv: array of args from command line
- * @args: arsed command args
+ * @argv: Array of args from command line.
+ * @args: Arsed command args.
  *
- * Return: dynamically allocated string containing the exec path or NULL
+ * Return: Dynamically allocated string containing the exec path or NULL
  */
 char *interpreter(char **argv, char **args)
 {
 	char *cmd;
 	char *path;
 
-	if (args == NULL || args[0] == NULL)
+	if (args[0] == NULL)
 		return (NULL);
 
 	cmd = args[0];
@@ -99,7 +99,6 @@ char **tokenize_path(char *path)
 		if (path[k] == ':')
 			paths++;
 	}
-
 	pathvector = malloc(sizeof(char *) * (paths + 1));
 	if (pathvector == NULL)
 		return (NULL);
