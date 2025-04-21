@@ -2,10 +2,9 @@
 
 /**
  * get_line - Handles the imput and the interactive mode.
- *
- * return: A pointer to the memory adress of the line.
+ * @env: Enviorment variable array
+ * Return: A pointer to the memory adress of the line.
  */
-
 char *get_line(char **env)
 {
 	char *line = NULL;
@@ -33,6 +32,11 @@ char *get_line(char **env)
 	return (line);
 }
 
+/**
+ * get_args - tokenizes an input line to arguments
+ * @line: input string containing commands
+ * Return: dynamically allocated array of args or NULL
+ */
 char **get_args(char *line)
 {
 	char **args;
@@ -59,6 +63,11 @@ char **get_args(char *line)
 	return (args);
 }
 
+/**
+ * tokenize_line - splits line into tokens
+ * @line: input string to tokenize
+ * Return: dinamically allocated array of tokens or NULL
+ */
 char **tokenize_line(char *line)
 {
 	char **args = malloc(sizeof(char *) * (args_count(line) + 1));

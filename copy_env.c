@@ -1,5 +1,10 @@
 #include "shell.h"
 
+/**
+ * copy_envp - creates copy of the envp variable array
+ * @env: array of environment variables to copy
+ * Return: dynamically allocated array containing a copy of envp variables
+ */
 char **copy_envp(char **env)
 {
 	int i, count = 0;

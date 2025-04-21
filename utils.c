@@ -1,5 +1,10 @@
 #include "shell.h"
 
+/**
+ * args_count - counts number of words in a line
+ * @line: input string to analyse
+ * Return: number of arguments in the string
+ */
 int args_count(char *line)
 {
 	int i = 0;
@@ -20,6 +25,11 @@ int args_count(char *line)
 	return (count);
 }
 
+/**
+ * _wlen - computes length of a word in a string
+ * @line: input string containing words separated by spaces or tabs
+ * Return: length of the first word in the string
+ */
 int _wlen(char *line)
 {
 	int i = 0;
@@ -29,6 +39,11 @@ int _wlen(char *line)
 	return (i);
 }
 
+/**
+ * free_vector - frees a dynamically allocated array of strings
+ * @args: array to free
+ * Return: void (frees memory to prevent leaks)
+ */
 void free_vector(char **args)
 {
 	int i = 0;

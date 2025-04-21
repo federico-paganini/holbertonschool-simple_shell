@@ -27,7 +27,7 @@ void execute(char *, char **, char **);
 /*General utilities prototypes functions*/
 int args_count(char *);
 int _wlen(char *);
-void free_vector(char**);
+void free_vector(char **);
 char **copy_envp(char **);
 
 #endif

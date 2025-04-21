@@ -3,9 +3,9 @@
 /**
  * main - Entry function of shell.
  *
- * @argc:
- * @argv:
- * @env:
+ * @argc: Number of command line arguments
+ * @argv: Array of command line arguments
+ * @envp: Enviorment variables passed to the program
  *
  * Return: 0.
  */
@@ -13,7 +13,7 @@
 int main(int argc __attribute__((__unused__)),
 		char **argv, char **envp)
 {
-	char **args; 
+	char **args;
 	char **env = copy_envp(envp);
 	char *path;
 

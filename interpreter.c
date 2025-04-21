@@ -1,5 +1,13 @@
 #include "shell.h"
 
+/**
+ * interpreter - identifies correct executable path for a command
+ *
+ * @argv: array of args from command line
+ * @args: arsed command args
+ *
+ * Return: dynamically allocated string containing the exec path or NULL
+ */
 char *interpreter(char **argv, char **args)
 {
 	char *cmd;
@@ -7,9 +15,6 @@ char *interpreter(char **argv, char **args)
 
 	if (args == NULL || args[0] == NULL)
 		return (NULL);
-
-	/*if (handle_builtin(args))
-		return (NULL);*/
 
 	cmd = args[0];
 	if (cmd[0] == '/' || (cmd[0] == '.' && cmd[1] == '/'))
@@ -34,6 +39,11 @@ char *interpreter(char **argv, char **args)
 	return (path);
 }
 
+/**
+ * find_path - searches for a command in system PATH directories
+ * @cmd: command name to search
+ * Return: dynamically allocated string with full executable path or NULL
+ */
 char *find_path(char *cmd)
 {
 	char *path = getenv("PATH");
@@ -72,6 +82,11 @@ char *find_path(char *cmd)
 	return (NULL);
 }
 
+/**
+ * tokenize_path - splits PATH variable into array of directory paths
+ * @path: string containing path environment variables
+ * Return: dynamically allocated array of dir paths or NULL
+ */
 char **tokenize_path(char *path)
 {
 	char **pathvector;

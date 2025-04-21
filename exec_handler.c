@@ -1,11 +1,11 @@
 #include "shell.h"
 
 /**
- * execute -
+ * execute - creates child process to execute a command
  *
- * @cmd:
- * @args:
- * @env:
+ * @cmd: path to the executable command
+ * @args: array of args to pass to the command
+ * @env: array of environment variables
  */
 void execute(char *cmd, char **args, char **env)
 {
