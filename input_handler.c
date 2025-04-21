@@ -19,8 +19,15 @@ char *get_line(char **env)
 
 	if (nread == -1)
 	{
+		if (errno == EINTR)
+		{
+			clearerr(stdin);
+			return (NULL);
+		}
+
 		if (interactive)
 			write(1, "\nlogout\n", 8);
+
 		free(line);
 		free_vector(env);
 		exit(EXIT_SUCCESS);
@@ -101,4 +108,31 @@ char **tokenize_line(char *line)
 	args[word] = NULL;
 
 	return (args);
+}
+
+/**
+ * handle_sigint -
+ *
+ * @sig:
+ */
+
+void handle_sigint(int sig)
+{
+	(void)sig;
+	write(STDOUT_FILENO, "\n#cisfun$ ", 10);
+}
+
+/**
+ * setup_signal -
+ */
+
+void setup_signal(void)
+{
+	struct sigaction sa;
+
+	sa.sa_handler = handle_sigint;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = 0;
+
+	sigaction(SIGINT, &sa, NULL);
 }

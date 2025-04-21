@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <signal.h>
+#include <errno.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
@@ -16,6 +17,8 @@
 char *get_line(char **);
 char **get_args(char *);
 char **tokenize_line(char *);
+void handle_sigint(int);
+void setup_signal(void);
 
 /*Function prototypes used to process the execution path*/
 char *interpreter(char **, char **, char **);
