@@ -17,6 +17,8 @@ int main(int argc __attribute__((__unused__)),
 	char **env = copy_envp(envp);
 	char *path;
 
+	signal(SIGINT, SIG_IGN);
+
 	for (;;)
 	{
 		args = get_args(get_line(env));

@@ -16,6 +16,8 @@ void execute(char *cmd, char **args, char **env)
 
 	if (pid == 0)
 	{
+		signal(SIGINT, SIG_DFL);
+
 		if (execve(cmd, args, env) == -1)
 		{
 			perror("execve");
