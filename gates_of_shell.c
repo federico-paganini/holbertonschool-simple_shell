@@ -20,6 +20,10 @@ int main(int argc __attribute__((__unused__)),
 	for (;;)
 	{
 		args = get_args(get_line(env));
+
+		if (args == NULL)
+			continue;
+
 		path = interpreter(argv, args);
 
 		if (path == NULL)
@@ -29,9 +33,6 @@ int main(int argc __attribute__((__unused__)),
 		}
 
 		execute(path, args, env);
-
-		free_vector(args);
-		free(path);
 	}
 	free_vector(env);
 
