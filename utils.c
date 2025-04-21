@@ -90,3 +90,26 @@ char **copy_envp(char **env)
 
 	return (new_env);
 }
+
+/**
+ * valid_exit_status -
+ *
+ * @str:
+ *
+ * Return:
+ */
+
+int valid_exit_status(char *str)
+{
+	while (*str != '\0')
+	{
+		if (!(*str >= '0' && *str <= '9'))
+			return (0);
+		str++;
+	}
+	
+	if (atoi(str) > 255)
+		return (0);
+
+	return (1);
+}

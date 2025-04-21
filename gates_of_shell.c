@@ -24,7 +24,7 @@ int main(int argc __attribute__((__unused__)),
 		if (args == NULL)
 			continue;
 
-		path = interpreter(argv, args);
+		path = interpreter(argv, args, env);
 
 		if (path == NULL)
 		{

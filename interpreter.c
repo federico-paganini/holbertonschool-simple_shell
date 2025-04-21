@@ -5,6 +5,7 @@
  *
  * @argv: Array of args from command line.
  * @args: Arsed command args.
+ * @env: Environ to free in exit built-in case.
  *
  * Return: Dynamically allocated string containing the exec path or NULL
  */
@@ -16,7 +17,7 @@ char *interpreter(char **argv, char **args, char **env)
 	if (args[0] == NULL)
 		return (NULL);
 
-	if(builtin_handler(argv, args, env))
+	if (builtin_handler(argv, args, env))
 		return (NULL);
 
 	cmd = args[0];

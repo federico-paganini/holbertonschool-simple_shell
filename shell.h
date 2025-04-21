@@ -24,11 +24,17 @@ char *find_path(char *);
 /*Execute function*/
 void execute(char *, char **, char **);
 
+/*Function prototypes used to handle built-in*/
+int builtin_handler(char **, char **, char **);
+void exit_builtin(char **, char **, char **);
+int env_builtin(char **, char **);
+
 /*General utilities prototypes functions*/
 int args_count(char *);
 int _wlen(char *);
 void free_vector(char **);
 char **copy_envp(char **);
+int valid_exit_status(char *);
 
 #endif
 
