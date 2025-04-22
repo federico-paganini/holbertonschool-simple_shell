@@ -19,8 +19,6 @@ int main(int argc __attribute__((__unused__)),
 
 	setup_signal();
 
-	signal(SIGINT, handle_sigint);
-
 	for (;;)
 	{
 		args = get_args(get_line(env));
