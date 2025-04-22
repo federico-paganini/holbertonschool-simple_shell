@@ -21,17 +21,17 @@ void handle_sigint(int);
 void setup_signal(void);
 
 /*Function prototypes used to process the execution path*/
-char *interpreter(char **, char **, char **);
+char *interpreter(char **, char **, char **, int *);
 char **tokenize_path(char *);
 char *find_path(char *, char **);
 char *_getenv(char *, char **);
 
 /*Execute function*/
-void execute(char *, char **, char **);
+int execute(char *, char **, char **);
 
 /*Function prototypes used to handle built-in*/
-int builtin_handler(char **, char **, char **);
-void exit_builtin(char **, char **, char **);
+int builtin_handler(char **, char **, char **, int);
+void exit_builtin(char **, char **, char **, int);
 int env_builtin(char **, char **);
 
 /*General utilities prototypes functions*/

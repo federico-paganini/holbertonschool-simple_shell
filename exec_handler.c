@@ -6,21 +6,23 @@
  * @cmd: path to the executable command
  * @args: array of args to pass to the command
  * @env: array of environment variables
+ * Return: The status exit of execute task.
  */
-void execute(char *cmd, char **args, char **env)
+int execute(char *cmd, char **args, char **env)
 {
 	pid_t pid;
 	int status;
 
 	pid = fork();
-
 	if (pid == 0)
 	{
 		signal(SIGINT, SIG_DFL);
-
 		if (execve(cmd, args, env) == -1)
 		{
 			perror("execve");
+			free_vector(args);
+			free_vector(env);
+			free(cmd);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -35,4 +37,5 @@ void execute(char *cmd, char **args, char **env)
 
 	free_vector(args);
 	free(cmd);
+	return (status);
 }

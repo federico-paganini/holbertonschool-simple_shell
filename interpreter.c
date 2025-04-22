@@ -9,7 +9,7 @@
  *
  * Return: Dynamically allocated string containing the exec path or NULL
  */
-char *interpreter(char **argv, char **args, char **env)
+char *interpreter(char **argv, char **args, char **env, int *status)
 {
 	char *cmd;
 	char *path;
@@ -17,7 +17,7 @@ char *interpreter(char **argv, char **args, char **env)
 	if (args[0] == NULL)
 		return (NULL);
 
-	if (builtin_handler(argv, args, env))
+	if (builtin_handler(argv, args, env, *status))
 		return (NULL);
 
 	cmd = args[0];
@@ -30,6 +30,7 @@ char *interpreter(char **argv, char **args, char **env)
 		else
 		{
 			fprintf(stderr, "%s: 1: %s: not found\n", argv[0], cmd);
+			*status = errno;
 			return (NULL);
 		}
 	}
@@ -37,6 +38,7 @@ char *interpreter(char **argv, char **args, char **env)
 	if (path == NULL)
 	{
 		fprintf(stderr, "%s: 1: %s: command not found\n", argv[0], cmd);
+		*status = 127;
 		return (NULL);
 	}
 

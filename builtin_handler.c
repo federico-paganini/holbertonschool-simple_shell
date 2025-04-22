@@ -10,9 +10,9 @@
  * Return: 1 if a builtin command was executed 0 otherwise
  */
 
-int builtin_handler(char **argv, char **args, char **env)
+int builtin_handler(char **argv, char **args, char **env, int status)
 {
-	exit_builtin(argv, args, env);
+	exit_builtin(argv, args, env, status);
 
 	if (env_builtin(args, env))
 		return (1);
@@ -28,9 +28,9 @@ int builtin_handler(char **argv, char **args, char **env)
  * @env: array of env variables to be freed
  */
 
-void exit_builtin(char **argv, char **args, char **env)
+void exit_builtin(char **argv, char **args, char **env, int status)
 {
-	int exit_code = 0;
+	int exit_code = status;
 
 	if (strcmp(args[0], "exit") != 0)
 		return;
