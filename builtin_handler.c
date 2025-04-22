@@ -32,17 +32,16 @@ int builtin_handler(char **argv, char **args, char **env, int status)
 
 void exit_builtin(char **argv, char **args, char **env, int status)
 {
-<<<<<<< HEAD
+
 	(void)argv;
 	(void)status;
-=======
-	int exit_code = status;
->>>>>>> f5a6ea7c257ec69289377020af986eb9db247317
 
-	if(strcmp(args[0], "exit") != 0)
+	int exit_code = status;
+
+	if (strcmp(args[0], "exit") != 0)
 		return;
 
-	if(isatty(STDIN_FILENO))
+	if (isatty(STDIN_FILENO))
 		write(1, "logout\n", 7);
 
 	free_vector(args);
