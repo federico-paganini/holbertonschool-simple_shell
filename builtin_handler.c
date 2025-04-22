@@ -49,8 +49,9 @@ void exit_builtin(char **argv, char **args, char **env)
 			exit_code = 2;
 		}
 	}
+	if (isatty(STDIN_FILENO))
+		write(1, "logout\n", 8);
 
-	write(1, "logout\n", 8);
 	free_vector(args);
 	free_vector(env);
 	exit(exit_code);
