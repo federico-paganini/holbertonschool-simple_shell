@@ -1,13 +1,13 @@
 #include "shell.h"
 
 /**
- * builtin_handler -
+ * builtin_handler - processses builtin shell commands
  *
- * @argv:
- * @args:
- * @env:
+ * @argv: the array cintaining the program and args, used for error messages
+ * @args:the tokenized command args
+ * @env: environment variables array
  *
- * Return:
+ * Return: 1 if a builtin command was executed 0 otherwise
  */
 
 int builtin_handler(char **argv, char **args, char **env)
@@ -21,11 +21,11 @@ int builtin_handler(char **argv, char **args, char **env)
 }
 
 /**
- * exit_builtin -
+ * exit_builtin - executes exit builtin command
  *
- * @argv:
- * @args:
- * @env:
+ * @argv: the array containing program name and args
+ * @args: tokenized array of command args
+ * @env: array of env variables to be freed
  */
 
 void exit_builtin(char **argv, char **args, char **env)
@@ -57,13 +57,12 @@ void exit_builtin(char **argv, char **args, char **env)
 }
 
 /**
- * env_builtin -
+ * env_builtin - executes environment builtin command
  *
- * @argv:
- * @args:
- * @env:
+ * @args: the tokenized command args
+ * @env: array of environment variables
  *
- * Return:
+ * Return: 1 id the env command was executed
  */
 
 int env_builtin(char **args, char **env)
@@ -81,5 +80,3 @@ int env_builtin(char **args, char **env)
 
 	return (1);
 }
-
-

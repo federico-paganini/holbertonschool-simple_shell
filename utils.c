@@ -92,11 +92,11 @@ char **copy_envp(char **env)
 }
 
 /**
- * valid_exit_status -
+ * valid_exit_status - determines if a string represents valid exit status
  *
- * @str:
+ * @str: string containing exit status
  *
- * Return:
+ * Return: 1 if it is valis 0 otherwise
  */
 
 int valid_exit_status(char *str)
@@ -107,7 +107,7 @@ int valid_exit_status(char *str)
 			return (0);
 		str++;
 	}
-	
+
 	if (atoi(str) > 255)
 		return (0);
 

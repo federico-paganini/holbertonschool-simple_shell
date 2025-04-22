@@ -111,9 +111,8 @@ char **tokenize_line(char *line)
 }
 
 /**
- * handle_sigint -
- *
- * @sig:
+ * handle_sigint - Signal handler for SIGINT
+ * @sig: The signal number received
  */
 
 void handle_sigint(int sig)
@@ -123,7 +122,7 @@ void handle_sigint(int sig)
 }
 
 /**
- * setup_signal -
+ * setup_signal - configures SIGINT signal handler
  */
 
 void setup_signal(void)
