@@ -51,9 +51,14 @@ char *interpreter(char **argv, char **args, char **env)
 char *find_path(char *cmd)
 {
 	char *path = getenv("PATH");
-	char **paths = tokenize_path(path);
+	char **paths;
 	char *full_path = NULL;
 	int len, i = 0;
+
+	if (path == NULL)
+		return (NULL);
+
+	paths = tokenize_path(path);
 
 	if (paths == NULL)
 		return (NULL);
@@ -98,8 +103,6 @@ char **tokenize_path(char *path)
 	int len = 0, start = 0;
 	int j = 0, i = 0, k;
 
-	if (path == NULL)
-		return (NULL);
 	for (k = 0; path[k]; k++)
 		if (path[k] == ':')
 			paths++;
