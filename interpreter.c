@@ -98,11 +98,11 @@ char **tokenize_path(char *path)
 	int len = 0, start = 0;
 	int j = 0, i = 0, k;
 
+	if (path == NULL)
+		return (NULL);
 	for (k = 0; path[k]; k++)
-	{
 		if (path[k] == ':')
 			paths++;
-	}
 	pathvector = malloc(sizeof(char *) * (paths + 1));
 	if (pathvector == NULL)
 		return (NULL);
