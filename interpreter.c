@@ -17,7 +17,7 @@ char *interpreter(char **argv, char **args, char **env)
 	if (args[0] == NULL)
 		return (NULL);
 
-	if (builtin_handler(argv, args, env))
+	if (builtin_handler(argv, args, env, 0))
 		return (NULL);
 
 	cmd = args[0];

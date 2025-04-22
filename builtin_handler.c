@@ -3,16 +3,17 @@
 /**
  * builtin_handler - processses builtin shell commands
  *
- * @argv: the array cintaining the program and args, used for error messages
+ * @argv: the array containing the program and args, used for error messages
  * @args:the tokenized command args
  * @env: environment variables array
+ * @status: current status (ignored)
  *
  * Return: 1 if a builtin command was executed 0 otherwise
  */
 
-int builtin_handler(char **argv, char **args, char **env)
+int builtin_handler(char **argv, char **args, char **env, int status)
 {
-	exit_builtin(argv, args, env);
+	exit_builtin(argv, args, env, status);
 
 	if (env_builtin(args, env))
 		return (1);
@@ -26,35 +27,24 @@ int builtin_handler(char **argv, char **args, char **env)
  * @argv: the array containing program name and args
  * @args: tokenized array of command args
  * @env: array of env variables to be freed
+ * @status: status code (ignored)
  */
 
-void exit_builtin(char **argv, char **args, char **env)
+void exit_builtin(char **argv, char **args, char **env, int status)
 {
-	int exit_code = 0;
+	(void)argv;
+	(void)status;
 
-	if (strcmp(args[0], "exit") != 0)
+	if(strcmp(args[0], "exit") != 0)
 		return;
 
-	if (args[1])
-	{
-		if (valid_exit_status(args[1]))
-		{
-			exit_code = atoi(args[1]);
-		}
-		else
-		{
-			fprintf(stderr, "%s: exit: %s: numeric argument required\n",
-					argv[0], args[1]);
-
-			exit_code = 2;
-		}
-	}
-	if (isatty(STDIN_FILENO))
-		write(1, "logout\n", 8);
+	if(isatty(STDIN_FILENO))
+		write(1, "logout\n", 7);
 
 	free_vector(args);
 	free_vector(env);
-	exit(exit_code);
+
+	exit(EXIT_SUCCESS);
 }
 
 /**
