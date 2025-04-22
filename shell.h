@@ -30,8 +30,8 @@ char *_getenv(char *, char **);
 int execute(char *, char **, char **);
 
 /*Function prototypes used to handle built-in*/
-int builtin_handler(char **, char **, char **, int);
-void exit_builtin(char **, char **, char **, int);
+int builtin_handler(char **, char **, char **, int status);
+void exit_builtin(char **, char **, char **, int status);
 int env_builtin(char **, char **);
 
 /*General utilities prototypes functions*/

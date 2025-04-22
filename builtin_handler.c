@@ -6,8 +6,7 @@
  * @argv: the array containing the program and args, used for error messages
  * @args:the tokenized command args
  * @env: environment variables array
- * @status: current status (ignored)
- *
+ * @status: current status
  * Return: 1 if a builtin command was executed 0 otherwise
  */
 
@@ -27,27 +26,37 @@ int builtin_handler(char **argv, char **args, char **env, int status)
  * @argv: the array containing program name and args
  * @args: tokenized array of command args
  * @env: array of env variables to be freed
- * @status: status code (ignored)
+ * @status: exit status to use when terminating shell
  */
 
 void exit_builtin(char **argv, char **args, char **env, int status)
 {
-
-	(void)argv;
-	(void)status;
 
 	int exit_code = status;
 
 	if (strcmp(args[0], "exit") != 0)
 		return;
 
+	if (args[1])
+	{
+		if (valid_exit_status(args[1]))
+		{
+			exit_code = atoi(args[1]);
+		}
+		else
+		{
+			fprintf(stderr, "%s: exit: %s: numeric argument rqeuired\n",
+					argv[0], args[1]);
+
+			exit_code = 2;
+		}
+	}
 	if (isatty(STDIN_FILENO))
-		write(1, "logout\n", 7);
+		write(1, "logout\n", 8);
 
 	free_vector(args);
 	free_vector(env);
-
-	exit(EXIT_SUCCESS);
+	exit(exit_code);
 }
 
 /**

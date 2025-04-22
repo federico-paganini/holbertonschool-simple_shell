@@ -6,7 +6,7 @@
  * @argv: Array of args from command line.
  * @args: Parsed command args.
  * @env: Environ to free in exit built-in case.
- *
+ * @status: pointer to int where exit is stored
  * Return: Dynamically allocated string containing the exec path or NULL
  */
 char *interpreter(char **argv, char **args, char **env, int *status)
@@ -17,11 +17,10 @@ char *interpreter(char **argv, char **args, char **env, int *status)
 	if (args[0] == NULL)
 		return (NULL);
 
-<<<<<<< HEAD
 	if (builtin_handler(argv, args, env, 0))
-=======
+
 	if (builtin_handler(argv, args, env, *status))
->>>>>>> f5a6ea7c257ec69289377020af986eb9db247317
+
 		return (NULL);
 
 	cmd = args[0];
