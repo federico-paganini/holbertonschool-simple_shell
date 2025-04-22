@@ -23,7 +23,8 @@ void setup_signal(void);
 /*Function prototypes used to process the execution path*/
 char *interpreter(char **, char **, char **);
 char **tokenize_path(char *);
-char *find_path(char *);
+char *find_path(char *, char **);
+char *_getenv(char *, char **);
 
 /*Execute function*/
 void execute(char *, char **, char **);

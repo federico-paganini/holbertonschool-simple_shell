@@ -33,7 +33,7 @@ char *interpreter(char **argv, char **args, char **env)
 			return (NULL);
 		}
 	}
-	path = find_path(cmd);
+	path = find_path(cmd, env);
 	if (path == NULL)
 	{
 		fprintf(stderr, "%s: 1: %s: command not found\n", argv[0], cmd);
@@ -48,9 +48,9 @@ char *interpreter(char **argv, char **args, char **env)
  * @cmd: command name to search
  * Return: dynamically allocated string with full executable path or NULL
  */
-char *find_path(char *cmd)
+char *find_path(char *cmd, char **env)
 {
-	char *path = getenv("PATH");
+	char *path = _getenv("PATH", env);
 	char **paths;
 	char *full_path = NULL;
 	int len, i = 0;
@@ -136,4 +136,31 @@ char **tokenize_path(char *path)
 	}
 	pathvector[j] = NULL;
 	return (pathvector);
+}
+
+/**
+ * _getenv -
+ * 
+ * @str:
+ * @env:
+ *
+ * Return:
+ */
+
+
+char *_getenv(char *str, char **env)
+{
+	size_t len;
+	int i;
+	
+	if (!str || !env)
+		return NULL;
+	
+	len = strlen(str);
+	
+	for (i = 0; env[i]; i++)
+		if (strncmp(env[i], str, len) == 0 && env[i][len] == '=')
+			return (env[i] + len + 1);
+	
+	return (NULL);
 }
