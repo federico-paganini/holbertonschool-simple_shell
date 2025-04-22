@@ -4,7 +4,7 @@
  * interpreter - Identifies correct executable path for a command.
  *
  * @argv: Array of args from command line.
- * @args: Arsed command args.
+ * @args: Parsed command args.
  * @env: Environ to free in exit built-in case.
  *
  * Return: Dynamically allocated string containing the exec path or NULL
@@ -46,6 +46,7 @@ char *interpreter(char **argv, char **args, char **env)
 /**
  * find_path - searches for a command in system PATH directories
  * @cmd: command name to search
+ * @env: what
  * Return: dynamically allocated string with full executable path or NULL
  */
 char *find_path(char *cmd, char **env)
@@ -139,12 +140,11 @@ char **tokenize_path(char *path)
 }
 
 /**
- * _getenv -
- * 
- * @str:
- * @env:
+ * _getenv - retrieves value of env variable
  *
- * Return:
+ * @str: name of the env variable to search
+ * @env: env variable array
+ * Return: pointer to the value of the found env
  */
 
 
@@ -152,15 +152,15 @@ char *_getenv(char *str, char **env)
 {
 	size_t len;
 	int i;
-	
+
 	if (!str || !env)
-		return NULL;
-	
+		return (NULL);
+
 	len = strlen(str);
-	
+
 	for (i = 0; env[i]; i++)
 		if (strncmp(env[i], str, len) == 0 && env[i][len] == '=')
 			return (env[i] + len + 1);
-	
+
 	return (NULL);
 }
