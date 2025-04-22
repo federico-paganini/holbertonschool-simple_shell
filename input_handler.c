@@ -119,7 +119,7 @@ char **tokenize_line(char *line)
 void handle_sigint(int sig)
 {
 	(void)sig;
-	write(STDOUT_FILENO, "\n#cisfun$ ", 10);
+	write(1, "\n", 1);
 }
 
 /**
