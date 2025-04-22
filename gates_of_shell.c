@@ -16,6 +16,7 @@ int main(int argc __attribute__((__unused__)),
 	char **args;
 	char **env = copy_envp(envp);
 	char *path;
+	int last_status;
 
 	setup_signal();
 
@@ -26,7 +27,7 @@ int main(int argc __attribute__((__unused__)),
 		if (args == NULL)
 			continue;
 
-		path = interpreter(argv, args, env);
+		path = interpreter(argv, args, env, &last_status);
 
 		if (path == NULL)
 		{
@@ -34,9 +35,9 @@ int main(int argc __attribute__((__unused__)),
 			continue;
 		}
 
-		execute(path, args, env);
+		last_status = execute(path, args, env);
 	}
 	free_vector(env);
 
-	return (EXIT_SUCCESS);
+	return (last_status);
 }
