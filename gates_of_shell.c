@@ -16,7 +16,7 @@ int main(int argc __attribute__((__unused__)),
 	char **args;
 	char **env = copy_envp(envp);
 	char *path;
-	int last_status;
+	int last_status = 0;
 
 	setup_signal();
 

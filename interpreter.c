@@ -17,14 +17,11 @@ char *interpreter(char **argv, char **args, char **env, int *status)
 	if (args[0] == NULL)
 		return (NULL);
 
-	if (builtin_handler(argv, args, env, 0))
-
 	if (builtin_handler(argv, args, env, *status))
-
 		return (NULL);
 
 	cmd = args[0];
-	if (cmd[0] == '/' || (cmd[0] == '.' && cmd[1] == '/'))
+	if (cmd[0] == '/' || cmd[0] == '.')
 	{
 		if (access(cmd, X_OK) == 0)
 		{
@@ -32,7 +29,7 @@ char *interpreter(char **argv, char **args, char **env, int *status)
 		}
 		else
 		{
-			fprintf(stderr, "%s: 1: %s: not found\n", argv[0], cmd);
+			fprintf(stderr, "%s: 1: %s: no such file or directory\n", argv[0], cmd);
 			*status = errno;
 			return (NULL);
 		}
