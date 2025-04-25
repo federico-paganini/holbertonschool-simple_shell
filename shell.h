@@ -40,6 +40,8 @@ int _wlen(char *);
 void free_vector(char **);
 char **copy_envp(char **);
 int valid_exit_status(char *);
+char *_strdup(char *);
+int _strcmp(char *, char *);
+int _atoi(char *);
 
 #endif
-

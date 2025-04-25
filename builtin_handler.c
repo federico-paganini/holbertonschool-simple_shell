@@ -34,14 +34,14 @@ void exit_builtin(char **argv, char **args, char **env, int status)
 
 	int exit_code = status;
 
-	if (strcmp(args[0], "exit") != 0)
+	if (_strcmp(args[0], "exit") != 0)
 		return;
 
 	if (args[1])
 	{
 		if (valid_exit_status(args[1]))
 		{
-			exit_code = atoi(args[1]);
+			exit_code = _atoi(args[1]);
 		}
 		else
 		{
@@ -72,7 +72,7 @@ int env_builtin(char **args, char **env)
 {
 	int i = 0;
 
-	if (strcmp(args[0], "env") != 0)
+	if (_strcmp(args[0], "env") != 0)
 		return (0);
 
 	while (env[i] != NULL)

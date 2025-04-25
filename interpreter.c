@@ -25,7 +25,7 @@ char *interpreter(char **argv, char **args, char **env, int *status)
 	{
 		if (access(cmd, X_OK) == 0)
 		{
-			return (strdup(cmd));
+			return (_strdup(cmd));
 		}
 		else
 		{
