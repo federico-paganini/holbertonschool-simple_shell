@@ -30,14 +30,14 @@ char *interpreter(char **argv, char **args, char **env, int *status)
 		else
 		{
 			fprintf(stderr, "%s: 1: %s: no such file or directory\n", argv[0], cmd);
-			*status = errno;
+			*status = 2;
 			return (NULL);
 		}
 	}
 	path = find_path(cmd, env);
 	if (path == NULL)
 	{
-		fprintf(stderr, "%s: 1: %s: command not found\n", argv[0], cmd);
+		fprintf(stderr, "%s: 1: %s: not found\n", argv[0], cmd);
 		*status = 127;
 		return (NULL);
 	}
