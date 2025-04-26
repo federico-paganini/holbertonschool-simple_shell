@@ -78,7 +78,7 @@ char **copy_envp(char **env)
 
 	for (i = 0; i < count; i++)
 	{
-		new_env[i] = strdup(env[i]);
+		new_env[i] = _strdup(env[i]);
 		if (new_env[i] == NULL)
 		{
 			perror("strdup");
@@ -108,7 +108,7 @@ int valid_exit_status(char *str)
 		str++;
 	}
 
-	if (atoi(str) > 255)
+	if (_atoi(str) > 255)
 		return (0);
 
 	return (1);

@@ -43,5 +43,6 @@ int valid_exit_status(char *);
 char *_strdup(char *);
 int _strcmp(char *, char *);
 int _atoi(char *);
+int _strlen(char *);
 
 #endif

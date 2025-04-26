@@ -68,7 +68,7 @@ char *find_path(char *cmd, char **env)
 
 	while (paths[i])
 	{
-		len = strlen(paths[i]) + strlen(cmd) + 2;
+		len = _strlen(paths[i]) + _strlen(cmd) + 2;
 		full_path = malloc(len);
 
 		if (full_path == NULL)
@@ -120,7 +120,7 @@ char **tokenize_path(char *path)
 		len = i - start;
 		if (len == 0)
 		{
-			pathvector[j++] = strdup(".");
+			pathvector[j++] = _strdup(".");
 		}
 		else
 		{
@@ -158,7 +158,7 @@ char *_getenv(char *str, char **env)
 	if (!str || !env)
 		return (NULL);
 
-	len = strlen(str);
+	len = _strlen(str);
 
 	for (i = 0; env[i]; i++)
 		if (strncmp(env[i], str, len) == 0 && env[i][len] == '=')
