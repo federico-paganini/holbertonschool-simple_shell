@@ -22,7 +22,7 @@ int main(int argc __attribute__((__unused__)),
 
 	for (;;)
 	{
-		args = get_args(get_line(env));
+		args = get_args(get_line(env, last_status));
 
 		if (args == NULL)
 			continue;

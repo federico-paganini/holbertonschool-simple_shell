@@ -5,7 +5,7 @@
  * @env: Enviorment variable array
  * Return: A pointer to the memory adress of the line.
  */
-char *get_line(char **env)
+char *get_line(char **env, int status)
 {
 	char *line = NULL;
 	size_t len = 0;
@@ -30,7 +30,7 @@ char *get_line(char **env)
 
 		free(line);
 		free_vector(env);
-		exit(EXIT_SUCCESS);
+		exit(status);
 	}
 
 	if (nread > 0 && line[nread - 1] == '\n')

@@ -14,7 +14,7 @@
 #include <sys/wait.h>
 
 /*Function prototypes used to process the args*/
-char *get_line(char **);
+char *get_line(char **, int);
 char **get_args(char *);
 char **tokenize_line(char *);
 void handle_sigint(int);
