@@ -29,6 +29,8 @@ int execute(char *cmd, char **args, char **env)
 	else if (pid > 0)
 	{
 		waitpid(pid, &status, 0);
+		if(WIFEXITED(status))
+			status = WEXITSTATUS(status);
 	}
 	else
 	{
