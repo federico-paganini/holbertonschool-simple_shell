@@ -2,7 +2,8 @@
 
 /**
  * get_line - Handles the imput and the interactive mode.
- * @env: Enviorment variable array
+ * @env: Enviorment variable array.
+ * @status: Status to exit in EOF.
  * Return: A pointer to the memory adress of the line.
  */
 char *get_line(char **env, int status)

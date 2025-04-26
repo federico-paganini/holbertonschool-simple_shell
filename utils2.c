@@ -1,6 +1,6 @@
 #include "shell.h"
 
-/* _atoi - Converts a string to integer.
+/** _atoi - Converts a string to integer.
  *
  * @s: String to convert.
  *
@@ -80,7 +80,7 @@ char *_strdup(char *str)
 	int i = 0;
 	int count = _strlen(str);
 
-	dup = malloc(sizeof(char) * (count +1));
+	dup = malloc(sizeof(char) * (count + 1));
 
 	if (dup == NULL)
 		return (NULL);
